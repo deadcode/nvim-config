@@ -228,6 +228,17 @@ local function restore_cursor()
   vim.cmd("`y")
   vim.cmd("delmarks y")
 end
+--function! s:restore_cursor() abort
+--  silent! normal `y
+--  silent! delmarks y
+--endfunction
+
+-- Go to the begining and end of current line in insert mode quickly
+map("i", "<C-A>", "<HOME>")
+map("i", "<C-E>", "<END>")
+
+-- Delete the character to the right of the cursor
+map("i", "<C-D>", "<DEL>")
 
 -- for mappings defined in lua
 --require("custom-map")
