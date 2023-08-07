@@ -135,3 +135,7 @@ augroup auto_create_dir
   autocmd!
   autocmd BufWritePre * lua require('utils').may_create_dir()
 augroup END
+
+" For some reason "C" files are not being detected. For now manually force
+" filedetection for *.c files.
+au BufNewFile,BufRead *.c setfiletype c

@@ -73,3 +73,6 @@ let g:loaded_matchparen = 1
 " Disable sql omni completion, it is broken.
 let g:loaded_sql_completion = 1
 "}
+
+" Syntax highlight C Header files as C rather than CPP
+let g:c_syntax_for_h = 1
