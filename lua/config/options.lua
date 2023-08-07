@@ -1,3 +1,6 @@
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
+
 vim.opt.encoding = "utf-8"
 
 -- change fillchars for folding, vertical split, end of buffer, and message separator
