@@ -10,6 +10,7 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- Append mapping
 local function amap(mode, lhs, rhs)
   local lmap = vim.tbl_filter(function(x)
     return x.lhs == lhs
@@ -239,6 +240,66 @@ map("i", "<C-E>", "<END>")
 
 -- Delete the character to the right of the cursor
 map("i", "<C-D>", "<DEL>")
+
+-- Move around splits using Ctrl + {h,j,k,l}
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
+
+-- NvimTree
+map("n", "<C-n>", ":NvimTreeToggle<CR>") -- open/close
+map("n", "<leader>f", ":NvimTreeRefresh<CR>") -- refresh
+map("n", "<leader>n", ":NvimTreeFindFile<CR>") -- search file
+
+-- Tagbar
+map("n", "<leader>z", ":TagbarToggle<CR>") -- open/close
+
+local cschemes = {
+  { "tokyonight-night", "tokyonight", "night" },
+  { "tokyonight-day", "tokyonight", "day" },
+  { "solarized", "solarized", "dark" },
+  { "solarized", "solarized", "light" },
+  { "default", "default", nil },
+  { "desert", "desert", nil },
+  { "gruvbox", "gruvbox", nil },
+  { "lunaperche", "lunaperche", nil },
+  { "habamax", "habamax", nil },
+  { "peachpuff", "peachpuff", nil },
+}
+
+function cycle_colorschemes()
+  local current_scheme = vim.g.colors_name
+  local next_scheme = "default"
+  local cschemes_size = table.getn(cschemes)
+  local ii = 0
+
+  for i, _ in ipairs(cschemes) do
+    local cscheme_name = cschemes[i][2]
+    local cscheme_style = cschemes[i][3]
+    vim.notify(
+      "i=" .. i .. " " .. cscheme_name .. cscheme_style .. " " .. current_scheme,
+      "info",
+      { "title", "cycle_colorschemes" }
+    )
+    if cscheme_name == current_scheme then
+      if i == cschemes_size then
+        ii = 1
+      else
+        ii = i + 1
+      end
+      vim.notify("cschemes_size=" .. cschemes_size .. " ii=" .. ii, "info", { "title", "cycle_colorschemes" })
+      next_scheme = cschemes[ii]
+
+      break
+    end
+  end
+
+  vim.cmd("colorscheme " .. next_scheme)
+  vim.notify("Colorscheme " .. next_scheme, "info", { "title", "Cycle Colorschemes" })
+end
+map("n", "<F2>", ":Themery<CR>")
+--vim.api.nvim_set_keymap("n", "F2", ":lua cycle_colorschemes()<CR>", {})
 
 -- for mappings defined in lua
 --require("custom-map")
