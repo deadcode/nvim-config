@@ -197,3 +197,6 @@ vim.opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
 
 -- do no wrap
 vim.opt.wrap = false
+
+-- Default fold enable
+vim.opt.foldmethod = "syntax"
