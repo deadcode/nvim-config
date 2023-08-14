@@ -7,7 +7,11 @@ local function map(mode, lhs, rhs, opts)
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  if type(rhs) == "string" then
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  else
+    vim.keymap.set(mode, lhs, rhs, options)
+  end
 end
 
 -- Append mapping
@@ -143,7 +147,7 @@ map("x", "<C-H>", ":s/")
 map("n", "<leader>cd", ":<C-U>lcd %:p:h<CR>:pwd<CR>")
 
 -- Use Esc to quit builtin terminal
-map("t", "<ESC>", "<C-\\><C-n>")
+--map("t", "<ESC>", "<C-\\><C-n>")
 
 -- Toggle spell checking (autosave does not play well with z=, so we disable it
 -- when we are doing spell checking)
@@ -248,9 +252,9 @@ map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
 -- NvimTree
-map("n", "<C-n>", ":NvimTreeToggle<CR>") -- open/close
-map("n", "<leader>f", ":NvimTreeRefresh<CR>") -- refresh
-map("n", "<leader>n", ":NvimTreeFindFile<CR>") -- search file
+map("n", "<leader>nt", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim-Tree" }) -- open/close
+map("n", "<leader>nr", ":NvimTreeRefresh<CR>", { desc = "Refresh Nvim-Tree" }) -- refresh
+map("n", "<leader>nf", ":NvimTreeFindFile<CR>", { desc = "Find file Nvim-Tree" }) -- search file
 
 -- Tagbar
 map("n", "<leader>z", ":TagbarToggle<CR>") -- open/close
@@ -303,3 +307,15 @@ map("n", "<F2>", ":Themery<CR>")
 
 -- for mappings defined in lua
 --require("custom-map")
+which = require("which-key")
+which.register({
+  ["<leader>n"] = { name = "+New Open" },
+})
+
+codewindow = require("codewindow")
+--vim.keymap.set("n", "<leader>nm", function()
+--  codewindow.toggle_minimap()
+--end, { expr = true, desc = "Minimap Toggle" })
+map("n", "<leader>nm", function()
+  codewindow.toggle_minimap()
+end, { expr = true, desc = "Minimap Toggle" })
