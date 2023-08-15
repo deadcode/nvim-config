@@ -253,8 +253,8 @@ map("n", "<C-l>", "<C-w>l")
 
 -- NvimTree
 map("n", "<leader>nt", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim-Tree" }) -- open/close
-map("n", "<leader>nr", ":NvimTreeRefresh<CR>", { desc = "Refresh Nvim-Tree" }) -- refresh
-map("n", "<leader>nf", ":NvimTreeFindFile<CR>", { desc = "Find file Nvim-Tree" }) -- search file
+map("n", "<leader>nTr", ":NvimTreeRefresh<CR>", { desc = "Refresh Nvim-Tree" }) -- refresh
+map("n", "<leader>nTf", ":NvimTreeFindFile<CR>", { desc = "Find file Nvim-Tree" }) -- search file
 
 -- Tagbar
 map("n", "<leader>z", ":TagbarToggle<CR>") -- open/close
@@ -307,15 +307,64 @@ map("n", "<F2>", ":Themery<CR>")
 
 -- for mappings defined in lua
 --require("custom-map")
+
+-- Leader Group for all new/toggle window plugins
 which = require("which-key")
 which.register({
   ["<leader>n"] = { name = "+New Open" },
 })
 
+-- Minimap
 codewindow = require("codewindow")
---vim.keymap.set("n", "<leader>nm", function()
---  codewindow.toggle_minimap()
---end, { expr = true, desc = "Minimap Toggle" })
 map("n", "<leader>nm", function()
   codewindow.toggle_minimap()
 end, { expr = true, desc = "Minimap Toggle" })
+
+-- ToggleTerm mappings
+which.register({
+  ["<leader>.nF"] = { name = "+Toggle Terminal" },
+})
+toggleterm = require("toggleterm")
+map("n", "<leader>nf", function()
+  toggleterm.toggle(vim.v.count1)
+end, { desc = "Toggle default float term" })
+map("n", "<leader>nFv", function()
+  toggleterm.toggle(vim.v.count1, 80, "vertical", "vertical")
+end, { noremap = true, silent = true, desc = "Create Vertical terminal" })
+map("n", "<leader>nFh", function()
+  toggleterm.toggle(vim.v.count1, 25, "horizontal", "horizontal")
+end, { noremap = true, silent = true, desc = "Create Horizontal terminal" })
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+    width = function(term)
+      return math.floor(vim.o.columns * 0.9)
+    end,
+    height = function(term)
+      return math.floor(vim.o.lines * 0.9)
+    end,
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+
+  display_name = "Bruce Git",
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+map("n", "<leader>ng", function()
+  _lazygit_toggle()
+end, { noremap = true, silent = true, desc = "Create lazygit terminal" })
