@@ -78,6 +78,7 @@ return {
         pyright = {},
       },
     },
+    enabled = false,
   },
 
   -- add tsserver and setup with typescript.nvim instead of lspconfig
@@ -113,11 +114,12 @@ return {
         -- ["*"] = function(server, opts) end,
       },
     },
+    enabled = false,
   },
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
+  --{ import = "lazyvim.plugins.extras.lang.typescript" },
 
   -- add more treesitter parsers
   {
@@ -233,7 +235,7 @@ return {
           else
             fallback()
           end
-        end, { "i", "s"}),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()

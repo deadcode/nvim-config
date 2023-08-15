@@ -314,6 +314,11 @@ which.register({
   ["<leader>n"] = { name = "+New Open" },
 })
 
+-- Gitsigns / Git Hunk Navigation
+ which.register({
+  ["<leader>gh"] = { name = "+Git Hunk Nav/Process" },
+})
+
 -- Minimap
 codewindow = require("codewindow")
 map("n", "<leader>nm", function()
