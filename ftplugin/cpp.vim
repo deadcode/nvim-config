@@ -9,6 +9,8 @@ set expandtab       " expand tab to spaces so that tabs are spaces
 set formatoptions-=o
 set formatoptions-=r
 
+set foldmethod=syntax
+
 nnoremap <silent> <buffer> <F9> :call <SID>compile_run_cpp()<CR>
 
 function! s:compile_run_cpp() abort
