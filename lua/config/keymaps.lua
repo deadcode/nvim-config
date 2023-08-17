@@ -373,3 +373,7 @@ end
 map("n", "<leader>ng", function()
   _lazygit_toggle()
 end, { noremap = true, silent = true, desc = "Create lazygit terminal" })
+
+-- Tags
+map("n", "<leader>nv", "<cmd>Vista!!<CR>", { desc = "Toggle Vista Tagbar" })
+map("n", "<F3>", "<cmd>Vista!!<CR>", { desc = "Toggle Vista Tagbar" })
