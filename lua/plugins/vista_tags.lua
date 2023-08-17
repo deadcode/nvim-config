@@ -30,7 +30,7 @@ return {
     vim.cmd("let g:vista#renderer#enable_icon = 1")
 
     -- The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-    vim.cmd("let g:vista#renderer#icons = { 'function': '\\uf794', 'variable': '\\uf71b' }")
+    vim.cmd("let g:vista#renderer#icons = { 'function': 'ƒ', 'variable': '' }")
 
     vim.cmd("let g:vista_sidebar_width = 45")
     -- How to show current cursor symbol
