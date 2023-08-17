@@ -14,7 +14,7 @@ return {
     -- Set the executive for some filetypes explicitly. Use the explicit executives
     -- instead of the default one for these filetypes when using `:Vista` withoutspecifying
     -- specifying the executive.
-    vim.cmd("let g:vista_executive_for = { 'cpp': 'vim_lsp', 'php': 'vim_lsp' }")
+    --vim.cmd("let g:vista_executive_for = { 'cpp': 'vim_lsp', 'php': 'vim_lsp' }")
 
     -- Declare the command including the executable and options used to generate ctags output
     -- for some certain filetypes.The file path will be appened to your custom command.
