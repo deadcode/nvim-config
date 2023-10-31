@@ -133,7 +133,8 @@ map(
 map("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", { expr = true })
 
 -- Always use very magic mode for searching
-map("n", "/", "/\v")
+-- map("n", "/", "/\v")
+map("n", "/", "/\\v")
 
 -- Search in selected region
 map("x", "/", ":<C-U>call feedkeys('/%>'.(line('<)-1).'l%<'.(line('>)+1).l)<CR>")
@@ -315,7 +316,7 @@ which.register({
 })
 
 -- Gitsigns / Git Hunk Navigation
- which.register({
+which.register({
   ["<leader>gh"] = { name = "+Git Hunk Nav/Process" },
 })
 
