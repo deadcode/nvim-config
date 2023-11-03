@@ -61,7 +61,13 @@ return {
       height = function(term)
         return math.floor(vim.o.lines * 0.7)
       end,
-      winblend = 3,
+      winblend = 0 or function(term)
+        if term.direction == "vertical" then
+          return 3
+        else
+          return 0
+        end
+      end,
       zindex = 1,
     },
     winbar = {
