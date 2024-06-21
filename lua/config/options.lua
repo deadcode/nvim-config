@@ -200,3 +200,6 @@ vim.opt.wrap = false
 
 -- Default fold enable
 vim.opt.foldmethod = "syntax"
+
+vim.api.nvim_set_keymap('c', '<Down>', 'v:lua.get_wildmenu_key("<right>", "<down>")', { expr = true })
+vim.api.nvim_set_keymap('c', '<Up>', 'v:lua.get_wildmenu_key("<left>", "<up>")', { expr = true })
