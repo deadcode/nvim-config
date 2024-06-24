@@ -221,8 +221,8 @@ end
 map("i", "<A-;>", "<ESC>miA;<ESC>`ii")
 
 -- Keep cursor position after yanking
-map("n", "y", "myy")
-map("x", "y", "myy")
+-- map("n", "y", "myy")
+-- map("x", "y", "myy")
 
 local restore_after_yank_grp = vim.api.nvim_create_augroup("restore_after_yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
