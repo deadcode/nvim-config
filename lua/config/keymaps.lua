@@ -222,8 +222,8 @@ end
 map("i", "<A-;>", "<ESC>miA;<ESC>`ii")
 
 -- Keep cursor position after yanking
-map("n", "y", "myy")
-map("x", "y", "myy")
+--map("n", "y", "myy")
+--map("x", "y", "myy")
 
 --function restore_cursor()
 --  vim.cmd("`y")
@@ -233,15 +233,15 @@ map("x", "y", "myy")
 --  silent! normal `y
 --  silent! delmarks y
 --endfunction
-local restore_after_yank_grp = vim.api.nvim_create_augroup("restore_after_yank", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  --command = "lua call restore_cursor()",
-  callback = function()
-    vim.cmd("'y")
-    vim.cmd("delmarks y")
-  end,
-  group = restore_after_yank_grp,
-})
+--local restore_after_yank_grp = vim.api.nvim_create_augroup("restore_after_yank", { clear = true })
+--vim.api.nvim_create_autocmd("TextYankPost", {
+--  --command = "lua call restore_cursor()",
+--  callback = function()
+--    vim.cmd("'y")
+--    vim.cmd("delmarks y")
+--  end,
+--  group = restore_after_yank_grp,
+--})
 
 -- Go to the begining and end of current line in insert mode quickly
 map("i", "<C-A>", "<HOME>")

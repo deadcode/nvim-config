@@ -91,7 +91,8 @@ endfunction
 " highlight yanked region, see `:h lua-highlight`
 augroup highlight_yank
   autocmd!
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="YankColor", timeout=300, on_visual=false})
+  "au TextYankPost * silent! lua vim.highlight.on_yank {higroup="YankColor", timeout=300, on_visual=false}
+  au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300, on_visual=false}
 augroup END
 
 augroup auto_close_win
