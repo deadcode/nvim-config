@@ -26,7 +26,8 @@ local function amap(mode, lhs, rhs)
 end
 
 -- Change leader to a comma
--- vim.g.mapleader = ","
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
 
 -----------------------------------------------------------
 -- Neovim shortcuts
@@ -221,23 +222,26 @@ end
 map("i", "<A-;>", "<ESC>miA;<ESC>`ii")
 
 -- Keep cursor position after yanking
--- map("n", "y", "myy")
--- map("x", "y", "myy")
+map("n", "y", "myy")
+map("x", "y", "myy")
 
-local restore_after_yank_grp = vim.api.nvim_create_augroup("restore_after_yank", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  command = "lua call restore_cursor()",
-  group = restore_after_yank_grp,
-})
-
-local function restore_cursor()
-  vim.cmd("`y")
-  vim.cmd("delmarks y")
-end
+--function restore_cursor()
+--  vim.cmd("`y")
+--  vim.cmd("delmarks y")
+--end
 --function! s:restore_cursor() abort
 --  silent! normal `y
 --  silent! delmarks y
 --endfunction
+local restore_after_yank_grp = vim.api.nvim_create_augroup("restore_after_yank", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  --command = "lua call restore_cursor()",
+  callback = function()
+    vim.cmd("'y")
+    vim.cmd("delmarks y")
+  end,
+  group = restore_after_yank_grp,
+})
 
 -- Go to the begining and end of current line in insert mode quickly
 map("i", "<C-A>", "<HOME>")
