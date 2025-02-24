@@ -316,12 +316,12 @@ map("n", "<F2>", ":Themery<CR>")
 -- Leader Group for all new/toggle window plugins
 which = require("which-key")
 which.register({
-  ["<leader>n"] = { name = "+New Open" },
+  { "<leader>n", group = "New Open" },
 })
 
 -- Gitsigns / Git Hunk Navigation
 which.register({
-  ["<leader>gh"] = { name = "+Git Hunk Nav/Process" },
+  { "<leader>gh", group = "Git Hunk Nav/Process" },
 })
 
 -- Minimap
@@ -332,7 +332,7 @@ end, { expr = true, desc = "Minimap Toggle" })
 
 -- ToggleTerm mappings
 which.register({
-  ["<leader>.nF"] = { name = "+Toggle Terminal" },
+  { "<leader>nF", group = "Toggle Terminal" },
 })
 toggleterm = require("toggleterm")
 map("n", "<leader>nf", function()

@@ -13,11 +13,11 @@ local core_conf_files = {
   -- 'themes.vim'
 }
 
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+
 for _, fname in ipairs(core_conf_files) do
   vim.cmd("source " .. vim.fn.stdpath("config") .. "/utils/" .. fname)
 end
-
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
 
 vim.cmd("colorscheme tokyonight-night")

@@ -132,10 +132,10 @@ augroup packer_auto_compile
   autocmd BufWritePost */nvim/lua/plugins.lua source <afile> | PackerCompile
 augroup END
 
-augroup auto_create_dir
-  autocmd!
-  autocmd BufWritePre * lua require('utils').may_create_dir()
-augroup END
+"augroup auto_create_dir
+"  autocmd!
+"  autocmd BufWritePre * lua require('utils').may_create_dir()
+"augroup END
 
 " For some reason "C" files are not being detected. For now manually force
 " filedetection for *.c files.

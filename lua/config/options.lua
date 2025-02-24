@@ -10,7 +10,7 @@ vim.opt.fillchars = "fold: ,vert:│,eob: ,msgsep:‾"
 
 -- Paste mode toggle, it seems that Nvim's bracketed paste mode
 -- does not work very well for nvim-qt, so we use good-old paste mode
-vim.opt.pastetoggle = "<F12>"
+-- vim.opt.pastetoggle = "<F12>"
 
 -- Split window below/right when creating horizontal/vertical windows
 vim.opt.splitbelow = true
@@ -201,8 +201,11 @@ vim.opt.wrap = false
 -- Default fold enable
 vim.opt.foldmethod = "syntax"
 
-vim.api.nvim_set_keymap('c', '<Down>', 'v:lua.get_wildmenu_key("<right>", "<down>")', { expr = true })
-vim.api.nvim_set_keymap('c', '<Up>', 'v:lua.get_wildmenu_key("<left>", "<up>")', { expr = true })
+vim.api.nvim_set_keymap("c", "<Down>", 'v:lua.get_wildmenu_key("<right>", "<down>")', { expr = true })
+vim.api.nvim_set_keymap("c", "<Up>", 'v:lua.get_wildmenu_key("<left>", "<up>")', { expr = true })
 function _G.get_wildmenu_key(key_wildmenu, key_regular)
-return vim.fn.wildmenumode() ~= 0 and key_wildmenu or key_regular
+  return vim.fn.wildmenumode() ~= 0 and key_wildmenu or key_regular
 end
+
+-- Don't care about nvim's order of loading
+vim.g.lazyvim_check_order = false
