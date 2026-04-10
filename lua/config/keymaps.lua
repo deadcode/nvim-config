@@ -325,10 +325,10 @@ which.register({
 })
 
 -- Minimap
-codewindow = require("codewindow")
-map("n", "<leader>nm", function()
-  codewindow.toggle_minimap()
-end, { expr = true, desc = "Minimap Toggle" })
+--codewindow = require("codewindow")
+--map("n", "<leader>nm", function()
+--  codewindow.toggle_minimap()
+--end, { expr = true, desc = "Minimap Toggle" })
 
 -- ToggleTerm mappings
 which.register({

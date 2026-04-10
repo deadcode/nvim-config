@@ -140,6 +140,28 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "c",
+        "cpp",
+        "rust",
+        "perl",
+        "html",
+        "http",
+        "go",
+        "git_config",
+        "git_rebase",
+        "gitcommit",
+        "doxygen",
+        "cuda",
+        "jq",
+        "json",
+        "make",
+        "objdump",
+        "php",
+        "regex",
+        "scala",
+        "scheme",
+        "terraform",
+        "zsh",
       },
     },
   },
@@ -147,16 +169,16 @@ return {
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
   -- If you'd rather extend the default config, use the code below instead:
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add tsx and treesitter
-      vim.list_extend(opts.ensure_installed, {
-        "tsx",
-        "typescript",
-      })
-    end,
-  },
+  --{
+  --  "nvim-treesitter/nvim-treesitter",
+  --  opts = function(_, opts)
+  --    -- add tsx and treesitter
+  --    vim.list_extend(opts.ensure_installed, {
+  --      "tsx",
+  --      "typescript",
+  --    })
+  --  end,
+  --},
 
   -- the opts function can also be used to change the default opts:
   {
@@ -179,7 +201,7 @@ return {
   },
 
   -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+  -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
